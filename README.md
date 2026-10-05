@@ -24,21 +24,21 @@ WorkforceIQ is a workforce analytics and resource planning platform designed to 
 
 ## Screenshots
 
-### Dashboard
+### WorkforceIQ Dashboard
 
 ![WorkforceIQ Dashboard](Screenshots/Dashboard.png)
 
 ### Employee Management
 
-![Employee Management](screenshots/employees.png)
+![Employee Management](Screenshots/Employees.png)
 
-### Resource Allocation
+### Allocation Planner
 
-![Resource Allocation](screenshots/allocations.png)
+![Allocation Planner](Screenshots/Allocation%20Planner.png)
 
 ### Analytics
 
-![Workforce Analytics](screenshots/analytics.png)
+![Analytics](Screenshots/Analytics.png)
 
 ---
 
