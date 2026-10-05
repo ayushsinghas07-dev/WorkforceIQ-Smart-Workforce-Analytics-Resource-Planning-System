@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - WorkforceIQ</title>
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .login-split-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .login-left {
+            flex: 1;
+            background: var(--primary-gradient);
+            color: #FFFFFF;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .login-right {
+            width: 100%;
+            max-width: 520px;
+            background: var(--bg-surface);
+            padding: 60px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .demo-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        .demo-chip:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-1px);
+        }
+        @media (max-width: 900px) {
+            .login-left { display: none; }
+            .login-right { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-split-container">
+        <!-- Left Side Branding Visual -->
+        <div class="login-left">
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 1.5rem; font-weight: 800;">
+                <div style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center;">
+                    <i data-lucide="layers"></i>
+                </div>
+                <span>WorkforceIQ</span>
+            </div>
+
+            <div>
+                <h2 style="font-size: 2.5rem; line-height: 1.2; margin-bottom: 16px; color: #FFFFFF;">
+                    Enterprise Resource Intelligence & Capacity Control
+                </h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; max-width: 460px;">
+                    Gain full visibility over workforce utilization, project staffing risks, and skill gap forecasts.
+                </p>
+            </div>
+
+            <div style="opacity: 0.8; font-size: 0.85rem;">
+                © 2026 WorkforceIQ Platform • Encrypted Enterprise Session
+            </div>
+        </div>
+
+        <!-- Right Side Login Form -->
+        <div class="login-right">
+            <div style="margin-bottom: 32px;">
+                <a href="/" style="display: inline-flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 24px;">
+                    <i data-lucide="arrow-left"></i> Back to Landing Page
+                </a>
+                <h1 style="font-size: 2rem; margin-bottom: 8px;">Welcome back</h1>
+                <p style="color: var(--text-secondary);">Sign in to access your WorkforceIQ workspace.</p>
+            </div>
+
+            <!-- Demo Quick-Fill Credential Chips -->
+            <div style="margin-bottom: 28px;">
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 10px;">
+                    Quick Demo Credentials:
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button class="demo-chip" onclick="fillCredentials('admin@workforceiq.com', 'admin123')">
+                        <i data-lucide="shield-check" style="width: 14px;"></i> Admin
+                    </button>
+                    <button class="demo-chip" onclick="fillCredentials('manager@workforceiq.com', 'manager123')">
+                        <i data-lucide="user-check" style="width: 14px;"></i> Manager
+                    </button>
+                    <button class="demo-chip" onclick="fillCredentials('viewer@workforceiq.com', 'viewer123')">
+                        <i data-lucide="eye" style="width: 14px;"></i> Viewer
+                    </button>
+                </div>
+            </div>
+
+            <form id="login-form">
+                <div id="error-banner" style="display: none; padding: 12px; background: var(--danger-bg); color: var(--danger); border-radius: var(--radius-md); font-size: 0.85rem; margin-bottom: 20px;"></div>
+
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px;">Email or Username</label>
+                    <input type="text" id="username" class="card" style="width: 100%; padding: 12px 16px;" placeholder="admin@workforceiq.com" required value="admin@workforceiq.com">
+                </div>
+
+                <div style="margin-bottom: 24px;">
+                    <label style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 6px;">Password</label>
+                    <div style="position: relative;">
+                        <input type="password" id="password" class="card" style="width: 100%; padding: 12px 16px; padding-right: 40px;" placeholder="••••••••" required value="admin123">
+                        <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); border: none; background: transparent; cursor: pointer; color: var(--text-muted);">
+                            <i data-lucide="eye" id="password-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px;">
+                    Sign In to Dashboard <i data-lucide="arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.lucide) lucide.createIcons();
+            
+            const form = document.getElementById('login-form');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                const errorBanner = document.getElementById('error-banner');
+
+                try {
+                    const resp = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username, password })
+                    });
+                    const res = await resp.json();
+
+                    if (res.success && res.data) {
+                        localStorage.setItem('workforceiq_user', JSON.stringify(res.data));
+                        window.location.href = '/app.html';
+                    } else {
+                        errorBanner.style.display = 'block';
+                        errorBanner.innerText = res.error || 'Invalid credentials.';
+                    }
+                } catch (err) {
+                    errorBanner.style.display = 'block';
+                    errorBanner.innerText = 'Connection error logging in.';
+                }
+            });
+        });
+
+        function fillCredentials(email, pass) {
+            document.getElementById('username').value = email;
+            document.getElementById('password').value = pass;
+        }
+
+        function togglePasswordVisibility() {
+            const pwdInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('password-eye');
+            if (pwdInput.type === 'password') {
+                pwdInput.type = 'text';
+                eyeIcon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                pwdInput.type = 'password';
+                eyeIcon.setAttribute('data-lucide', 'eye');
+            }
+            if (window.lucide) lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
